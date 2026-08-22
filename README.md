@@ -45,3 +45,29 @@ Evaluates potential **multicollinearity** (dependencies between predictor variab
 * **Radio vs. Sales ($r = 0.350$):** Moderate positive correlation.
 * **Newspaper vs. Sales ($r = 0.158$):** Weak correlation, suggesting lower direct efficiency.
 * **Inter-channel Correlation:** TV and Radio show near-zero correlation ($r = 0.055$), whereas Radio and Newspaper show moderate collinearity ($r = 0.354$).
+
+  ## Phase 2: Regression Modeling
+
+### Model Specification
+We fit a Multiple Linear Regression model predicting `Sales` based on advertising expenditure across all three media channels:
+
+$$\text{Sales} = \beta_0 + \beta_1 (\text{TV}) + \beta_2 (\text{Radio}) + \beta_3 (\text{Newspaper}) + \epsilon$$
+
+### Fitted Regression Results
+
+| Parameter | Coefficient ($\beta$) | Std. Error | $t$-stat | $p$-value | Significance |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Intercept ($\beta_0$)** | 4.6251 | 0.3075 | 15.041 | $< 0.001$ | *** |
+| **TV ($\beta_1$)** | 0.0544 | 0.0014 | 39.592 | $< 0.001$ | *** |
+| **Radio ($\beta_2$)** | 0.1070 | 0.0085 | 12.604 | $< 0.001$ | *** |
+| **Newspaper ($\beta_3$)** | 0.0003 | 0.0058 | 0.058 | 0.954 | Insignificant |
+
+* **Multiple $R^2$:** 0.9026
+* **Adjusted $R^2$:** 0.9011
+* **Residual Standard Error:** 1.662 (196 DF)
+* **$F$-statistic:** 605.4 ($p < 2.2 \times 10^{-16}$)
+
+### Statistical Insights & LP Optimization Implications
+1. **Radio delivers highest marginal return ($\beta_2 = 0.1070$):** Dollar-for-dollar, Radio generates roughly twice the return of TV in this linear model.
+2. **TV is strong & reliable ($\beta_1 = 0.0544$):** TV drives massive total volume due to higher spend capacity, maintaining strong statistical significance.
+3. **Newspaper is ineffective ($\beta_3 = 0.0003, p = 0.954$):** Newspaper's coefficient is statistically indistinguishable from zero. In the LP optimization phase, Newspaper spend will yield virtually no objective function gain.
