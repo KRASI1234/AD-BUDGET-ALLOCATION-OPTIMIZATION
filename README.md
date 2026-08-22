@@ -71,3 +71,38 @@ $$\text{Sales} = \beta_0 + \beta_1 (\text{TV}) + \beta_2 (\text{Radio}) + \beta_
 1. **Radio delivers highest marginal return ($\beta_2 = 0.1070$):** Dollar-for-dollar, Radio generates roughly twice the return of TV in this linear model.
 2. **TV is strong & reliable ($\beta_1 = 0.0544$):** TV drives massive total volume due to higher spend capacity, maintaining strong statistical significance.
 3. **Newspaper is ineffective ($\beta_3 = 0.0003, p = 0.954$):** Newspaper's coefficient is statistically indistinguishable from zero. In the LP optimization phase, Newspaper spend will yield virtually no objective function gain.
+4. ## Phase 3: Baseline Budget & Mathematical Formulation
+
+### Current Baseline Allocation vs. Expected Performance
+Using mean historical market spending as our reference baseline budget ($B = 200.8605$), the current budget allocation yields the following baseline performance:
+
+| Channel | Current Mean Spend ($x_i$) | Current Share (%) | Marginal Return ($\beta_i$) |
+| :--- | :--- | :--- | :--- |
+| **TV ($x_1$)** | 147.0425 | 73.2% | 0.0544 |
+| **Radio ($x_2$)** | 23.2640 | 11.6% | 0.1070 |
+| **Newspaper ($x_3$)** | 30.5540 | 15.2% | 0.0003 |
+| **Total ($B$)** | **200.8605** | **100.0%** | **Baseline Expected Sales: 15.132** |
+
+---
+
+### Linear Programming (LP) Formulation
+
+We formulate the advertising spend allocation as a continuous Linear Program to maximize total expected sales.
+
+#### Decision Variables
+* $x_1$: Expenditure on TV advertising ($\text{in } \$1,000\text{s}$)
+* $x_2$: Expenditure on Radio advertising ($\text{in } \$1,000\text{s}$)
+* $x_3$: Expenditure on Newspaper advertising ($\text{in } \$1,000\text{s}$)
+
+#### Objective Function
+Maximize expected sales ($S$):
+$$\max S(x_1, x_2, x_3) = 4.6251 + 0.0544 x_1 + 0.1070 x_2 + 0.0003 x_3$$
+
+*(Note: Since the intercept $4.6251$ is constant, maximizing $S$ is equivalent to maximizing $\beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3$.)*
+
+#### Constraints
+1. **Total Budget Constraint:**
+   $$x_1 + x_2 + x_3 \le 200.8605$$
+
+2. **Non-Negativity Constraints:**
+   $$x_1 \ge 0, \quad x_2 \ge 0, \quad x_3 \ge 0$$
