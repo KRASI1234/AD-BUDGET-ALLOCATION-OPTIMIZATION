@@ -439,7 +439,7 @@ $$
 This provides an independent computational check of the Linear Programming optimization.
 
 
-**The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07% without increasing the total advertising budget**.
+The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07%** without increasing the total advertising budget.
 ---
 
 ## Phase 6: Sensitivity Analysis
