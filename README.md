@@ -139,7 +139,7 @@ The baseline allocation corresponds to the historical average advertising expend
 Using the fitted regression equation and the baseline allocation, the predicted Sales level is approximately:
 
 $$
-\widehat{S}_{\text{baseline}} \approx 15.132
+\hat{S}_{\text{baseline}} \approx 15.132
 $$
 
 This represents the model-predicted Sales under the historical mean allocation.
@@ -161,7 +161,7 @@ The advertising budget allocation problem is formulated as a continuous Linear P
 The fitted regression model is:
 
 $$
-\widehat{S}(x_1,x_2,x_3)
+\hat{S}(x_1,x_2,x_3)
 =
 4.6251
 +
@@ -175,7 +175,7 @@ $$
 Therefore, the LP objective is:
 
 $$
-\max \widehat{S}(x_1,x_2,x_3)
+\max \hat{S}(x_1,x_2,x_3)
 =
 4.6251
 +
@@ -194,46 +194,4 @@ $$
 0.1070x_2
 +
 0.0003x_3
-$$
-
-#### Constraints
-
-**1. Total Budget Constraint**
-
-The total advertising expenditure cannot exceed the available baseline budget:
-
-$$
-x_1 + x_2 + x_3 \leq 200.8605
-$$
-
-**2. Channel Capacity Constraints**
-
-Each channel is constrained by its maximum historical expenditure:
-
-$$
-x_1 \leq 296.40
-$$
-
-$$
-x_2 \leq 49.60
-$$
-
-$$
-x_3 \leq 114.00
-$$
-
-**3. Non-Negativity Constraints**
-
-Advertising expenditure cannot be negative:
-
-$$
-x_1 \geq 0
-$$
-
-$$
-x_2 \geq 0
-$$
-
-$$
-x_3 \geq 0
 $$
