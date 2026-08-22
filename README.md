@@ -71,7 +71,7 @@ $$\text{Sales} = \beta_0 + \beta_1 (\text{TV}) + \beta_2 (\text{Radio}) + \beta_
 1. **Radio delivers highest marginal return ($\beta_2 = 0.1070$):** Dollar-for-dollar, Radio generates roughly twice the return of TV in this linear model.
 2. **TV is strong & reliable ($\beta_1 = 0.0544$):** TV drives massive total volume due to higher spend capacity, maintaining strong statistical significance.
 3. **Newspaper is ineffective ($\beta_3 = 0.0003, p = 0.954$):** Newspaper's coefficient is statistically indistinguishable from zero. In the LP optimization phase, Newspaper spend will yield virtually no objective function gain.
-4. ## Phase 3: Baseline Budget & Mathematical Formulation
+ ## Phase 3: Baseline Budget & Mathematical Formulation
 
 ### Current Baseline Allocation vs. Expected Performance
 Using mean historical market spending as our reference baseline budget ($B = 200.8605$), the current budget allocation yields the following baseline performance:
