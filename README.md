@@ -583,20 +583,22 @@ The Newspaper coefficient can increase from its current value of **0.00034** up 
 
 ### 6.5 RHS Sensitivity
 
-The sensitivity analysis also provides ranges for the right-hand-side values of the constraints within which the current shadow prices remain applicable.
+RHS sensitivity analysis examines how much the right-hand side of each constraint can change while the current optimal basis remains valid.
 
 | Constraint | Current RHS | Lower Bound | Upper Bound |
 |---|---:|---:|---:|
-| **Total Budget** | 200.8605 | 49.60 | 346.00 |
-| **TV Maximum** | 296.40 | No finite lower limit | No finite upper limit |
-| **Radio Maximum** | 49.60 | 0.00 | 200.8605 |
-| **Newspaper Maximum** | 114.00 | No finite lower limit | No finite upper limit |
+| **Total Budget** | 200.8605 | 49.6000 | 346.0000 |
+| **TV Maximum** | 296.4000 | 151.2605 | No finite upper limit |
+| **Radio Maximum** | 49.6000 | 0.0000 | 200.8605 |
+| **Newspaper Maximum** | 114.0000 | 0.0000 | No finite upper limit |
 
-The total budget can therefore vary within the reported sensitivity range while maintaining the same basis, with the budget shadow price remaining applicable.
+The **TV Maximum** constraint is currently non-binding because the optimal allocation uses only $151.2605 thousand out of the available $296.40 thousand. Therefore, the RHS can be reduced from $296.40 thousand to $151.2605 thousand before the constraint becomes binding.
 
-The Radio upper bound is particularly important. Since the current Radio allocation is exactly equal to its maximum, relaxing this constraint could allow additional funds to be directed toward Radio and increase predicted Sales.
+Similarly, the **Newspaper Maximum** is non-binding because the optimal allocation assigns zero expenditure to Newspaper. Its RHS can therefore be reduced to $0 before the constraint becomes binding.
 
----
+The **Total Budget** constraint is binding at $200.8605 thousand, while the **Radio Maximum** is also binding at $49.60 thousand. These constraints therefore have zero slack at the optimal solution.
+
+The sensitivity ranges indicate the range of RHS values over which the current LP basis remains applicable. Changes outside these ranges may result in a different optimal solution.
 
 ### 6.6 Managerial Interpretation
 
@@ -639,6 +641,13 @@ The positive shadow prices for the total budget and Radio capacity demonstrate t
 
 Overall, the sensitivity analysis suggests that if additional advertising resources become available, **increasing the allowable Radio allocation should be considered before increasing the TV or Newspaper capacity limits**, subject to the validity of the underlying regression model and its assumptions.
 ---
+## Phase 7: Limitations and Conclusion
+
+The optimization assumes linear relationships between advertising expenditure and Sales and does not account for diminishing returns, interaction effects, or changes in market conditions.
+
+The results are based on historical observational data, so the estimated relationships should not be interpreted as definitive causal effects.
+
+Overall, the model demonstrates how regression and Linear Programming can be combined to identify a more efficient allocation of a fixed advertising budget.
 
 ## Data Source and Tools
 
