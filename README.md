@@ -101,7 +101,7 @@ $$\max S(x_1, x_2, x_3) = 4.6251 + 0.0544 x_1 + 0.1070 x_2 + 0.0003 x_3$$
 *(Note: Since the intercept $4.6251$ is constant, maximizing $S$ is equivalent to maximizing $\beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3$.)*
 
 #### Constraints
- 1.**Total Budget Constraint:**
+1. **Total Budget Constraint:**
    $$x_1 + x_2 + x_3 \le 200.8605$$
    
 2. **Channel Capacity / Upper Bound Constraints (Max Historical Spend):**
@@ -109,5 +109,5 @@ $$\max S(x_1, x_2, x_3) = 4.6251 + 0.0544 x_1 + 0.1070 x_2 + 0.0003 x_3$$
    $$x_2 \le 49.60 \quad (\text{Radio Max})$$
    $$x_3 \le 114.00 \quad (\text{Newspaper Max})$$
    
- 3.**Non-Negativity Constraints:**
+3. **Non-Negativity Constraints:**
    $$x_1 \ge 0, \quad x_2 \ge 0, \quad x_3 \ge 0$$
