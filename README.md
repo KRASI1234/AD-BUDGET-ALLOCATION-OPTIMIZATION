@@ -107,13 +107,10 @@ $$
 3. **Newspaper has a negligible and statistically insignificant estimated effect ($\beta_3 = 0.00034$, $p = 0.954$).**  
    After controlling for TV and Radio expenditure, the model provides little evidence of a marginal relationship between Newspaper spending and Sales.
 
-4. **Estimated marginal-return ranking:**
+4. **Estimated marginal-return ranking:**  
+**Radio > TV > Newspaper**
 
-   $$
-   Radio > TV > Newspaper
-   $$
-
-   This ranking informs the allocation priorities in the subsequent Linear Programming optimization.
+This ranking informs the allocation priorities in the subsequent Linear Programming optimization.
 
 ---
 
@@ -441,7 +438,8 @@ $$
 
 This provides an independent computational check of the Linear Programming optimization.
 
-The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07% without increasing the total advertising budget**.
+
+**The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07% without increasing the total advertising budget**.
 ---
 
 ## Phase 6: Sensitivity Analysis
