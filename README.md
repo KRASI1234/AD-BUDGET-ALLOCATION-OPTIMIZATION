@@ -343,3 +343,102 @@ The optimization reallocates advertising expenditure toward channels with higher
 - The **total advertising budget remains unchanged**, meaning that the improvement comes from reallocating the existing budget rather than increasing total expenditure.
 
 Overall, the Linear Programming model indicates that reallocating the existing advertising budget according to the estimated marginal returns could increase predicted Sales by approximately **20.07%**.
+
+---
+
+## Phase 5: R Validation of Excel Solver Optimization
+
+To independently validate the Excel Solver solution, the same Linear Programming model was implemented in **R** using the `lpSolve` package.
+
+The R implementation used the same regression coefficients, budget constraint, channel capacity constraints, and non-negativity requirements as the Excel Solver model.
+
+### R Model Specification
+
+The objective coefficients were:
+
+| Channel | Regression Coefficient |
+|---|---:|
+| **TV** | 0.05445 |
+| **Radio** | 0.10700 |
+| **Newspaper** | 0.00034 |
+
+The regression intercept was **4.6251**.
+
+The available advertising budget was **$200.8605 thousand**, with the following historical maximum expenditure constraints:
+
+- TV ≤ $296.40 thousand
+- Radio ≤ $49.60 thousand
+- Newspaper ≤ $114.00 thousand
+
+The R model was solved using the `lp()` function from the `lpSolve` package.
+
+### R Optimization Results
+
+The R implementation produced the following optimal allocation:
+
+| Channel | R Optimal Allocation ($000s) |
+|---|---:|
+| **TV** | 151.2605 |
+| **Radio** | 49.6000 |
+| **Newspaper** | 0.0000 |
+| **Total** | **200.8605** |
+
+The resulting predicted Sales were:
+
+$$
+S_{optimized} = 18.16843
+$$
+
+### Baseline vs. Optimized Performance
+
+Using the same regression model, the baseline allocation produced:
+
+$$
+S_{baseline} = 15.1312
+$$
+
+The improvement was:
+
+$$
+18.16843 - 15.1312 = 3.037234
+$$
+
+The percentage improvement was:
+
+$$
+\frac{3.037234}{15.1312} \times 100
+= 20.07266\%
+$$
+
+which rounds to:
+
+$$
+\boxed{20.07\%}
+$$
+
+### Excel Solver vs. R Validation
+
+| Metric | Excel Solver | R `lpSolve` |
+|---|---:|---:|
+| **TV allocation ($000s)** | 151.2605 | 151.2605 |
+| **Radio allocation ($000s)** | 49.6000 | 49.6000 |
+| **Newspaper allocation ($000s)** | 0.0000 | 0.0000 |
+| **Total budget ($000s)** | 200.8605 | 200.8605 |
+| **Optimized Predicted Sales** | 18.1684 | 18.16843 |
+| **Sales Improvement (%)** | 20.07% | 20.07266% |
+
+The two implementations produce the same optimal allocation and essentially identical predicted Sales. The minor difference in displayed precision is due to numerical rounding.
+
+### Validation Conclusion
+
+The independent R implementation successfully reproduces the Excel Solver solution. Both methods identify the same optimal allocation:
+
+$$
+x_1 = 151.2605,\quad
+x_2 = 49.6000,\quad
+x_3 = 0
+$$
+
+This provides an independent computational check of the Linear Programming optimization.
+
+The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07% without increasing the total advertising budget**.
