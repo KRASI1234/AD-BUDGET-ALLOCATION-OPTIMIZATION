@@ -22,6 +22,7 @@ Average spend across all 200 markets establishes our implied baseline budget ($B
 ### Linear Correlation Analysis
 
 ### Correlation Matrix
+Evaluates potential **multicollinearity** (dependencies between predictor variables):
 
 | | TV | Radio | Newspaper | Sales |
 | :--- | :---: | :---: | :---: | :---: |
@@ -30,7 +31,12 @@ Average spend across all 200 markets establishes our implied baseline budget ($B
 | **Newspaper** | 0.057 | 0.354 | 1.000 | **0.158** |
 | **Sales** | **0.901** | **0.350** | **0.158** | 1.000 |
 
-Evaluating linear relationships between channel spend and sales:
+* **Independence of TV:** TV spend is independent of Radio ($r = 0.055$) and Newspaper ($r = 0.057$), indicating no co-budgeting pattern between TV and print/audio.
+* **Radio-Newspaper Collinearity:** Radio and Newspaper share a moderate correlation ($r = 0.354$). Markets spending heavily on Radio often spend heavily on Newspaper as well.
+* **Regression Implications:** Low overall inter-channel collinearity confirms that linear regression can cleanly isolate individual channel efficiencies ($\beta$ coefficients) without major variance inflation issues.
+
+
+## Evaluating linear relationships between channel spend and sales:
 
 * **TV vs. Sales ($r = 0.901$):** Strong positive correlation, indicating TV is the primary driver of sales.
 * **Radio vs. Sales ($r = 0.350$):** Moderate positive correlation.
