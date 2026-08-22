@@ -156,9 +156,7 @@ The advertising budget allocation problem is formulated as a continuous Linear P
 - $x_2$: Expenditure on Radio advertising ($ in thousands)
 - $x_3$: Expenditure on Newspaper advertising ($ in thousands)
 
-#### Objective Function
-
-The fitted regression model is:
+#### Objective FunctionThe fitted regression model is:
 
 $$
 \hat{S}(x_1,x_2,x_3)
@@ -194,4 +192,5 @@ $$
 0.1070x_2
 +
 0.0003x_3
+$$
 $$
