@@ -391,13 +391,19 @@ $$
 
 ### Baseline vs. Optimized Performance
 
-Using the same regression model, the baseline allocation produced:
+Using the same regression model, the baseline allocation produced predicted Sales of:
 
 $$
 S_{baseline} = 15.1312
 $$
 
-The improvement was:
+The optimized allocation produced predicted Sales of:
+
+$$
+S_{optimized} = 18.16843
+$$
+
+The absolute improvement was:
 
 $$
 18.16843 - 15.1312 = 3.037234
@@ -406,16 +412,10 @@ $$
 The percentage improvement was:
 
 $$
-\frac{3.037234}{15.1312} \times 100
-= 20.07266\%
+\frac{3.037234}{15.1312} \times 100 = 20.07266\%
 $$
 
-which rounds to:
-
-$$
-\boxed{20.07\%}
-$$
-
+Therefore, the optimized allocation produces an approximately **20.07% increase in predicted Sales** compared with the baseline allocation, without increasing the total advertising budget.
 ### Excel Solver vs. R Validation
 
 | Metric | Excel Solver | R `lpSolve` |
@@ -638,3 +638,19 @@ $$
 The positive shadow prices for the total budget and Radio capacity demonstrate that these are the most economically important constraints in the model. In contrast, the TV and Newspaper upper bounds are non-binding and therefore do not currently restrict the optimal solution.
 
 Overall, the sensitivity analysis suggests that if additional advertising resources become available, **increasing the allowable Radio allocation should be considered before increasing the TV or Newspaper capacity limits**, subject to the validity of the underlying regression model and its assumptions.
+---
+
+## Data Source and Tools
+
+### Data Source
+
+The dataset used in this project is the **Advertising Dataset**, obtained from Kaggle. It contains 200 observations of advertising expenditure across **TV, Radio, and Newspaper**, together with corresponding **Sales** values.
+
+**Source:** [Kaggle – Advertising Dataset](https://www.kaggle.com/datasets/ashydv/advertising-dataset)
+
+### Tools Used
+
+- **R** — Exploratory analysis, multiple linear regression, and LP validation using `lpSolve`
+- **Microsoft Excel** — LP model implementation and optimization
+- **Excel Solver** — Optimization using the Simplex LP method
+- **GitHub** — Project documentation and version control
