@@ -442,3 +442,199 @@ $$
 This provides an independent computational check of the Linear Programming optimization.
 
 The results confirm that reallocating the existing advertising budget toward TV and Radio, while eliminating Newspaper expenditure under the specified constraints, increases model-predicted Sales by approximately **20.07% without increasing the total advertising budget**.
+---
+
+## Phase 6: Sensitivity Analysis
+
+Sensitivity analysis was conducted to evaluate how changes in the constraints and regression coefficients could affect the optimal advertising allocation. The analysis identifies **binding and non-binding constraints**, measures available slack, and examines the **shadow prices** and sensitivity ranges associated with the Linear Programming model.
+
+### 6.1 Constraint Status
+
+A constraint is **binding** when it is satisfied exactly at the optimal solution, meaning that its slack is zero. A **non-binding** constraint has unused capacity and therefore has positive slack.
+
+The sensitivity analysis produced the following results:
+
+| Constraint | RHS | Used | Slack | Status | Shadow Price |
+|---|---:|---:|---:|---|---:|
+| **Total Budget** | 200.8605 | 200.8605 | 0.0000 | **Binding** | 0.05445 |
+| **TV Maximum** | 296.4000 | 151.2605 | 145.1395 | **Non-binding** | 0.00000 |
+| **Radio Maximum** | 49.6000 | 49.6000 | 0.0000 | **Binding** | 0.05255 |
+| **Newspaper Maximum** | 114.0000 | 0.0000 | 114.0000 | **Non-binding** | 0.00000 |
+
+### 6.2 Binding Constraints
+
+Two constraints are binding at the optimal solution:
+
+#### Total Budget
+
+The total budget constraint is:
+
+$$
+x_1+x_2+x_3 \leq 200.8605
+$$
+
+At the optimum:
+
+$$
+151.2605+49.6000+0=200.8605
+$$
+
+Therefore, the entire available advertising budget is used and the constraint has zero slack.
+
+The shadow price of the budget constraint is:
+
+$$
+0.05445
+$$
+
+This indicates that, within the applicable sensitivity range, an additional $1,000 of available advertising budget would increase the LP objective by approximately **0.05445 thousand units of predicted Sales**, provided the current optimal basis remains unchanged.
+
+#### Radio Maximum
+
+The Radio constraint is:
+
+$$
+x_2 \leq 49.60
+$$
+
+The optimal solution allocates:
+
+$$
+x_2=49.60
+$$
+
+Therefore, the Radio capacity constraint is also binding.
+
+Its shadow price is:
+
+$$
+0.05255
+$$
+
+This positive shadow price indicates that the Radio upper bound is restricting the optimal solution. The model would benefit from additional Radio capacity if the constraint were relaxed.
+
+### 6.3 Non-Binding Constraints
+
+#### TV Maximum
+
+The TV constraint is:
+
+$$
+x_1 \leq 296.40
+$$
+
+The optimal TV allocation is only:
+
+$$
+x_1=151.2605
+$$
+
+Therefore, unused TV capacity is:
+
+$$
+296.40-151.2605=145.1395
+$$
+
+The TV constraint is consequently non-binding, with a shadow price of zero.
+
+Increasing the TV maximum would not improve the objective under the current solution because the model is not constrained by TV capacity.
+
+#### Newspaper Maximum
+
+The Newspaper constraint is:
+
+$$
+x_3 \leq 114.00
+$$
+
+The optimized allocation is:
+
+$$
+x_3=0
+$$
+
+Therefore, the model has 114 thousand dollars of unused Newspaper capacity.
+
+The constraint is non-binding and has a shadow price of zero.
+
+Importantly, the zero Newspaper allocation is **not caused by the Newspaper upper bound**. The model voluntarily allocates nothing to Newspaper because its estimated marginal return is substantially lower than those of TV and Radio.
+
+---
+
+### 6.4 Objective-Coefficient Sensitivity
+
+The sensitivity analysis also examined the range over which each regression coefficient can change without changing the current optimal basis.
+
+| Channel | Current Coefficient | Lower Bound | Upper Bound |
+|---|---:|---:|---:|
+| **TV** | 0.05445 | 0.00034 | 0.10700 |
+| **Radio** | 0.10700 | 0.05445 | Unbounded |
+| **Newspaper** | 0.00034 | Unbounded | 0.05445 |
+
+These ranges provide useful information about the robustness of the optimal allocation.
+
+The TV coefficient can vary between **0.00034 and 0.10700** while maintaining the current optimal basis.
+
+The Radio coefficient can decrease to approximately **0.05445** before the current optimal basis changes. Since its current coefficient is **0.10700**, Radio has a substantial margin before losing its current advantage over TV.
+
+The Newspaper coefficient can increase from its current value of **0.00034** up to approximately **0.05445** before the current optimal basis changes. This indicates that Newspaper would need a substantially higher estimated marginal return before the optimizer would allocate funds to it under the current constraints.
+
+---
+
+### 6.5 RHS Sensitivity
+
+The sensitivity analysis also provides ranges for the right-hand-side values of the constraints within which the current shadow prices remain applicable.
+
+| Constraint | Current RHS | Lower Bound | Upper Bound |
+|---|---:|---:|---:|
+| **Total Budget** | 200.8605 | 49.60 | 346.00 |
+| **TV Maximum** | 296.40 | No finite lower limit | No finite upper limit |
+| **Radio Maximum** | 49.60 | 0.00 | 200.8605 |
+| **Newspaper Maximum** | 114.00 | No finite lower limit | No finite upper limit |
+
+The total budget can therefore vary within the reported sensitivity range while maintaining the same basis, with the budget shadow price remaining applicable.
+
+The Radio upper bound is particularly important. Since the current Radio allocation is exactly equal to its maximum, relaxing this constraint could allow additional funds to be directed toward Radio and increase predicted Sales.
+
+---
+
+### 6.6 Managerial Interpretation
+
+The sensitivity analysis provides several important insights into the advertising allocation problem:
+
+1. **The total advertising budget is fully utilized.**  
+   The zero slack on the budget constraint confirms that additional budget has potential value under the model.
+
+2. **Radio capacity is a limiting constraint.**  
+   Radio receives the maximum permitted allocation of $49.60 thousand. Its positive shadow price indicates that relaxing the Radio limit could improve the objective.
+
+3. **TV capacity is not restrictive.**  
+   The model uses only $151.2605 thousand out of the available $296.40 thousand maximum.
+
+4. **Newspaper capacity is not restrictive.**  
+   The model allocates zero to Newspaper despite an upper bound of $114 thousand. The low estimated marginal return, rather than the constraint itself, explains the zero allocation.
+
+5. **The optimal solution is economically interpretable.**  
+   The optimizer first favors Radio because it has the highest estimated marginal return. Once the Radio capacity constraint is reached, the remaining budget is allocated to TV. Newspaper receives no allocation because its estimated marginal return is negligible.
+
+### 6.7 Sensitivity Analysis Conclusion
+
+The sensitivity analysis confirms that the optimal solution is primarily constrained by the **available total budget and the maximum allowable Radio expenditure**.
+
+The optimal allocation remains:
+
+$$
+x_1=151.2605,\qquad
+x_2=49.6000,\qquad
+x_3=0
+$$
+
+with predicted Sales of:
+
+$$
+S_{optimized}=18.16843
+$$
+
+The positive shadow prices for the total budget and Radio capacity demonstrate that these are the most economically important constraints in the model. In contrast, the TV and Newspaper upper bounds are non-binding and therefore do not currently restrict the optimal solution.
+
+Overall, the sensitivity analysis suggests that if additional advertising resources become available, **increasing the allowable Radio allocation should be considered before increasing the TV or Newspaper capacity limits**, subject to the validity of the underlying regression model and its assumptions.
