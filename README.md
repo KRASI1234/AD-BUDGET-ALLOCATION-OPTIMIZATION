@@ -37,6 +37,9 @@ Evaluates potential **multicollinearity** (dependencies between predictor variab
 
 
 ## Evaluating linear relationships between channel spend and sales:
+| Channel | TV | Radio | Newspaper | Sales |
+| :--- | :--- | :--- | :--- | :--- |
+| **Correlation with Sales ($r$)** | 0.9012 | 0.3496 | 0.1580 | 1.0000 |
 
 * **TV vs. Sales ($r = 0.901$):** Strong positive correlation, indicating TV is the primary driver of sales.
 * **Radio vs. Sales ($r = 0.350$):** Moderate positive correlation.
