@@ -2,6 +2,8 @@
 
 Operations research project optimizing advertising budget allocation across TV, Radio, and Newspaper channels using multiple linear regression and linear programming (Excel Solver + Python).
 
+---
+
 ## Phase 1: Exploratory Data Analysis (EDA)
 
 ### Dataset Overview
@@ -12,7 +14,7 @@ Operations research project optimizing advertising budget allocation across TV, 
 
 ### Summary Statistics and Current Baseline Allocation
 
-Average spend across all 200 markets establishes our implied baseline budget ($B$).
+Average spend across all 200 markets establishes our implied baseline budget, denoted by $B$.
 
 | Channel | Mean Spend | Share of Budget (%) | Min Spend | Max Spend |
 |---|---:|---:|---:|---:|
@@ -22,6 +24,8 @@ Average spend across all 200 markets establishes our implied baseline budget ($B
 | **Total Baseline ($B$)** | **200.86** | **100.0%** | — | — |
 
 **Average Sales across markets:** 15.13 units.
+
+---
 
 ### Correlation Analysis
 
@@ -39,9 +43,9 @@ The correlation matrix evaluates the relationships between advertising expenditu
 - **TV and Sales:** Strong positive correlation ($r = 0.901$), indicating a strong association between TV advertising expenditure and Sales.
 - **Radio and Sales:** Moderate positive correlation ($r = 0.350$).
 - **Newspaper and Sales:** Weak positive correlation ($r = 0.158$).
-- **TV and Radio:** Very weak correlation ($r = 0.055$), suggesting little evidence of coordinated spending between the two channels.
+- **TV and Radio:** Very weak correlation ($r = 0.055$).
 - **TV and Newspaper:** Very weak correlation ($r = 0.057$).
-- **Radio and Newspaper:** Moderate correlation ($r = 0.354$), indicating some association between spending on the two channels.
+- **Radio and Newspaper:** Moderate correlation ($r = 0.354$).
 
 The relatively low correlations among the advertising channels suggest that severe multicollinearity is unlikely to be a major concern for the regression model.
 
@@ -72,7 +76,7 @@ Correlation measures pairwise association and does not account for the simultane
 We fit a Multiple Linear Regression model predicting `Sales` based on advertising expenditure across all three media channels:
 
 $$
-\text{Sales} = \beta_0 + \beta_1(\text{TV}) + \beta_2(\text{Radio}) + \beta_3(\text{Newspaper}) + \epsilon
+Sales = \beta_0 + \beta_1 TV + \beta_2 Radio + \beta_3 Newspaper + \epsilon
 $$
 
 ### Fitted Regression Results
@@ -100,13 +104,13 @@ $$
 2. **TV has a strong and statistically significant effect ($\beta_1 = 0.0544$).**  
    Holding the other channels constant, an additional $1,000 spent on TV is associated with an estimated increase of 0.0544 thousand units of Sales. The coefficient is highly statistically significant ($p < 0.001$).
 
-3. **Newspaper has a negligible and statistically insignificant estimated effect ($\beta_3 = 0.0003, p = 0.954$).**  
+3. **Newspaper has a negligible and statistically insignificant estimated effect ($\beta_3 = 0.0003$, $p = 0.954$).**  
    After controlling for TV and Radio expenditure, the model provides little evidence of a marginal relationship between Newspaper spending and Sales.
 
-4. **The estimated marginal-return ranking is:**
+4. **Estimated marginal-return ranking:**
 
    $$
-   \text{Radio} > \text{TV} > \text{Newspaper}
+   Radio > TV > Newspaper
    $$
 
    This ranking will inform the allocation priorities in the subsequent Linear Programming optimization.
@@ -132,14 +136,14 @@ The current allocation is:
 | **Newspaper ($x_3$)** | 30.5540 | 15.2% | 0.0003 |
 | **Total ($B$)** | **200.8605** | **100.0%** | — |
 
-The baseline allocation corresponds to the historical average advertising expenditure across the 200 markets.
+The baseline allocation represents the historical average advertising expenditure across the 200 markets.
 
 ### Baseline Predicted Sales
 
-Using the fitted regression equation and the baseline allocation, the predicted Sales level is approximately:
+Using the fitted regression model and the baseline allocation, the predicted Sales level is approximately:
 
 $$
-\hat{S}_{\text{baseline}} \approx 15.132
+S_{baseline} = 15.132
 $$
 
 This represents the model-predicted Sales under the historical mean allocation.
@@ -156,41 +160,64 @@ The advertising budget allocation problem is formulated as a continuous Linear P
 - $x_2$: Expenditure on Radio advertising ($ in thousands)
 - $x_3$: Expenditure on Newspaper advertising ($ in thousands)
 
-#### Objective FunctionThe fitted regression model is:
+#### Objective Function
+
+The fitted regression model is:
 
 $$
-\hat{S}(x_1,x_2,x_3)
-=
-4.6251
-+
-0.0544x_1
-+
-0.1070x_2
-+
-0.0003x_3
+S = 4.6251 + 0.0544x_1 + 0.1070x_2 + 0.0003x_3
 $$
 
 Therefore, the LP objective is:
 
 $$
-\max \hat{S}(x_1,x_2,x_3)
-=
-4.6251
-+
-0.0544x_1
-+
-0.1070x_2
-+
-0.0003x_3
+Maximize \quad S = 4.6251 + 0.0544x_1 + 0.1070x_2 + 0.0003x_3
 $$
 
 Since the intercept $4.6251$ is constant, maximizing predicted Sales is equivalent to maximizing:
 
 $$
-0.0544x_1
-+
-0.1070x_2
-+
-0.0003x_3
+0.0544x_1 + 0.1070x_2 + 0.0003x_3
 $$
+
+#### Constraints
+
+**1. Total Budget Constraint**
+
+The total advertising expenditure cannot exceed the available baseline budget:
+
+$$
+x_1 + x_2 + x_3 \leq 200.8605
+$$
+
+**2. Channel Capacity Constraints**
+
+Each channel is constrained by its maximum historical expenditure:
+
+$$
+x_1 \leq 296.40
+$$
+
+$$
+x_2 \leq 49.60
+$$
+
+$$
+x_3 \leq 114.00
+$$
+
+**3. Non-Negativity Constraints**
+
+Advertising expenditure cannot be negative:
+
+$$
+x_1 \geq 0
+$$
+
+$$
+x_2 \geq 0
+$$
+
+$$
+x_3 \geq 0
 $$
